@@ -9,12 +9,4 @@ fi
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "${SCRIPT_DIR}"
 
-if [ ! -d venv ]; then
-    python3 -m venv venv
-fi
-. ./venv/bin/activate
-
-pip install -r requirements.txt > /dev/null
-
-python3 openconnect-gp-okta.py --config ${CONFIG}
-
+uv run ./openconnect-gp-okta.py --config ${CONFIG}

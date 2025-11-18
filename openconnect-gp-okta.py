@@ -326,7 +326,9 @@ def main(
     with requests.Session() as s:
         s.mount('https://', TLSAdapter())
         saml_req_url = prelogin(s, gateway)
+        print('SAML request URL:', saml_req_url)
         saml_resp_url, saml_resp_data = okta_saml(s, saml_req_url, username, password, factor_priorities, totp_key)
+        print('SAML response URL:', saml_resp_url)
         saml_username, prelogin_cookie = complete_saml(s, saml_resp_url, saml_resp_data)
 
     subprocess_args = [
